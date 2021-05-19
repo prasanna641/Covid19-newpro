@@ -65,6 +65,7 @@ export class ChartsComponent implements OnInit {
   selectChangeHandler (event: any) {
     //update the ui
     this.selectedDay = event.target.value; 
+    this.file=[];
     this.fun();
   }
  
@@ -78,7 +79,7 @@ export class ChartsComponent implements OnInit {
   for(let index=0;index<this.jsonfile1.length;index++)
 
 {
-  if(this.jsonfile1[index].States=="Goa" &&(this.start< this.jsonfile1[index].Date_YMD) && (this.end>this.jsonfile1[index].Date_YMD))
+  if(this.jsonfile1[index].States==this.selectedDay)
   {
   
   this.a=this.jsonfile1[index].Date_YMD;
