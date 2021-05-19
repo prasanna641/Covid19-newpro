@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, OnInit, ViewChild, ɵɵpureFunction1, ɵɵpureFunction2 } from '@angular/core';  
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild, ɵɵpureFunction1, ɵɵpureFunction2 } from '@angular/core';  
 import { GoogleChartComponent } from 'angular-google-charts'; 
 import {jsonfile} from "./charts";
 import { chartsservice } from './charts.service';
@@ -32,16 +32,60 @@ export class ChartsComponent implements OnInit {
   type2:string;
   data2:any;
   options2:any;
+  selectedDay: string = 'Total_India';
+  start:string;
+  end:string;
+  date:Date;
+  date1:Date;
+  get startdate():string{
+ 
+    return this.start;
+    
+  }
+  set enddate(value:string)
+  {
+    this.end=value;
+    
+
+  }
+  get enddate():string{
+ 
+    return this.end;
+    
+  }
+  set startdate(value:string)
+  {
+    this.start=value;
+    
+
+  }
+
+
+  //event handler for the select element's change event
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedDay = event.target.value; 
+    this.fun();
+  }
  
   fun()
+
  {
+  let date: Date = new Date(this.start);  
+  let date1: Date =new Date(this.end);
+  
+    
   for(let index=0;index<this.jsonfile1.length;index++)
+
 {
-  console.log(this.jsonfile1)
+  if(this.jsonfile1[index].States=="Goa" &&(this.start< this.jsonfile1[index].Date_YMD) && (this.end>this.jsonfile1[index].Date_YMD))
+  {
+  
   this.a=this.jsonfile1[index].Date_YMD;
   this.b=this.jsonfile1[index].Confirmed;
   this.c=this.jsonfile1[index].Recovered;
   this.d=this.jsonfile1[index].ICMR_RTPCR;
+
  
   this.file.push([this.a,this.b]);
   this.fun2(); 
@@ -50,13 +94,14 @@ export class ChartsComponent implements OnInit {
   this.file2.push([this.a,this.d])
   this.fun4()
 }
+ }
   }
   fun2()
   {
     this.title = 'googlechart';  
     this.type = 'LineChart';  
     this.data = this.file; 
-    console.log(this.data) 
+     
     this.options = {   
       colors: ['red'], 
       is3D: true,
@@ -70,7 +115,7 @@ export class ChartsComponent implements OnInit {
     this.title1 = 'googlechart';  
     this.type1 = 'LineChart';  
     this.data1 = this.file1; 
-    console.log(this.data) 
+  
     this.options1 = {   
       colors: ['green'], 
       is3D: true,
@@ -84,7 +129,7 @@ export class ChartsComponent implements OnInit {
       this.title2 = 'googlechart';  
       this.type2 = 'LineChart';  
       this.data2 = this.file2; 
-      console.log(this.data) 
+ 
       this.options2 = {   
         colors: ['black'], 
         is3D: true,
@@ -98,11 +143,7 @@ export class ChartsComponent implements OnInit {
 }
   ngOnInit():void {
     this.jsonfile1=this.jsonservice.getItems();
-    this.fun();  
-
-    
-   
-   
+ this.fun();  
 }
 }
 

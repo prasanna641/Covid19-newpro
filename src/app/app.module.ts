@@ -9,6 +9,7 @@ import { CoronaService } from './shared/corona.service';
 import { HelpfulLinksComponent } from './helpful-links/helpful-links.component';
 import { ChartsComponent } from './charts/charts.component';
 import { GoogleChartsModule } from 'angular-google-charts'; 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    FormsModule
   ],
   providers: [CoronaService],
   bootstrap: [AppComponent]
