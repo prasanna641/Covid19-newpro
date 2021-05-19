@@ -33,8 +33,8 @@ export class ChartsComponent implements OnInit {
   data2:any;
   options2:any;
   selectedDay: string = 'Total_India';
-  start:string;
-  end:string;
+  start:string="2021-02-18";
+  end:string="2021-02-22";
   date:Date;
   date1:Date;
   get startdate():string{
