@@ -85,13 +85,14 @@
 [height]="height">  
 </google-chart>  
 
-<form (change)="fundate()">
+<form>
   <label for="bday">Enter Start Date
     <input type="date" name="start" required pattern="\d{2}-\d{2}-\d{4}" [(ngModel)]="startdate" >  Enter End Date
     <input type="date" name="end" required pattern="\d{2}-\d{2}-\d{4}" [(ngModel)]="enddate">
     <span class="validity"></span>
   </label>
 </form>
+
 
 
   

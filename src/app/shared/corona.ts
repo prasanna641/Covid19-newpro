@@ -1,11 +1,13 @@
 export interface jsonfile
 {
     
-    Date_YMD:any,
-    States:any;
-    Confirmed:any,
-    Recovered:any,
-    Deceased:any,
-    ICMR_RTPCR:any,
-    Vaccine_Doses_administered:any
+    Date_YMD:string,
+    States:string,
+    Confirmed:number,
+    Recovered:number,
+    Deceased:number,
+    ICMR_RTPCR:number,
+    Vaccine_Doses_administered:number
+
 }
+    

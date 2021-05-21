@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     GoogleChartsModule,
     FormsModule
   ],
-  providers: [CoronaService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,12 +5,6 @@
                 <div class="titles col-md-7">
                     <h1>India COVID-19 Tracker</h1>
                 </div>
-                <div class="last-update col-md-5">
-                    <h6>Last Updated</h6>
-                    <h4 class="difference-time" style=" color: #0bb332fa; font-weight: 600; "> **** minutes ago</h4>
-                    <ng-template #elseBlock>**** hour **** minutes ago</ng-template>
-                    <h5 style=" color: #0bb332fa; font-weight: 600;" class="refreshed-time">*****IST</h5>
-                </div>
             </div>
         </div>
 
@@ -20,31 +14,27 @@
             <div class="level-item is-cherry col-xs-3">
                 <h5>Confirmed</h5>
                 <h4></h4>
-                <h1>********* </h1>
+                <h1>{{confirmed}}</h1>
             </div>
             &nbsp;&nbsp;&nbsp;
             <div class="level-item is-blue col-xs-3">
-                <h5 class="heading ">Active</h5>
+                <h5 class="heading ">Recovered</h5>
                 <h4></h4>
-                <h1 class="title has-text-info ">*************</h1>
+                <h1 class="title has-text-info ">{{recovered}}</h1>
             </div>
             &nbsp;&nbsp;&nbsp;
             <div class="level-item is-green col-xs-3">
-                <h5 class="heading ">Recovered</h5>
+                <h5 class="heading ">Deaths</h5>
                 <h4></h4>
-                <h1 class="title has-text-success ">**********</h1>
+                <h1 class="title has-text-success ">{{death}}</h1>
             </div>
             &nbsp;&nbsp;&nbsp;
             <div class="level-item is-gray col-xs-3">
-                <h5 class="heading ">Deceased</h5>
+                <h5 class="heading ">Vacccines</h5>
                 <h4></h4>
-                <h1 class="title has-text-grey ">***********</h1>
+                <h1 class="title has-text-grey ">{{vaccine}}</h1>
             </div>
         </div>
-        <div class="col-xs-12 note">
-            <h5 class="state-note" style="animation-delay: 1s; ">Click on States to View District Data</h5>
-            <h5 class="sorting-note" style="animation-delay: 1s; ">Click on table heading to sort data in Ascending/Descending order</h5>
-            </div>
         <h5 class="affected-count fadeInUp " style="animation-delay: 1s; ">28 States/UTS Affected</h5>
     <div class="home-center col-lg-5 col-md-5 col-sm-5 col-xs-12 ">
         <div class="MapExplorer fadeInUp hide-xs" style="animation-delay: 1.2s; ">
