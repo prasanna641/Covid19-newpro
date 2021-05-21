@@ -2,14 +2,16 @@
 import { Component, ElementRef, OnInit, SimpleChanges, ViewChild, ɵɵpureFunction1, ɵɵpureFunction2 } from '@angular/core';  
 import { GoogleChartComponent } from 'angular-google-charts'; 
 import {jsonfile} from "./charts";
-import { chartsservice } from './charts.service';
+import { HttpClient } from '@angular/common/http';
+import { CoronaService } from '../shared/corona.service';
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
-  jsonfile1:jsonfile[]=[];
+  jsonfile:any;
+  jsonfile1=[];
   a:any;
   b:any;
   c:any;
@@ -38,29 +40,19 @@ export class ChartsComponent implements OnInit {
   date:Date;
   date1:Date;
   get startdate():string{
- 
-    return this.start;
-    
+    return this.start; 
   }
   set enddate(value:string)
   {
     this.end=value;
-    
-
   }
   get enddate():string{
- 
-    return this.end;
-    
+    return this.end; 
   }
   set startdate(value:string)
   {
     this.start=value;
-    
-
   }
-
-
   //event handler for the select element's change event
   selectChangeHandler (event: any) {
     //update the ui
@@ -74,14 +66,10 @@ export class ChartsComponent implements OnInit {
     this.fun();
   }
   fun()
-
  {
   let date: Date = new Date(this.start);  
-  let date1: Date =new Date(this.end);
-  
-    
+  let date1: Date =new Date(this.end);   
   for(let index=0;index<this.jsonfile1.length;index++)
-
 {
   let date3 : Date=new Date(this.jsonfile1[index].Date_YMD);
   if(this.jsonfile1[index].States==this.selectedDay &&(date.getTime()<date3.getTime()) &&(date3.getTime()<date1.getTime()))
@@ -91,8 +79,6 @@ export class ChartsComponent implements OnInit {
   this.b=+this.jsonfile1[index].Confirmed;
   this.c=+this.jsonfile1[index].Recovered;
   this.d=+this.jsonfile1[index].ICMR_RTPCR;
-
- 
   this.file.push([this.a,this.b]);
   this.fun2(); 
   this.file1.push([this.a,this.c])
@@ -107,7 +93,6 @@ export class ChartsComponent implements OnInit {
     this.title = 'googlechart';  
     this.type = 'LineChart';  
     this.data = this.file; 
-     
     this.options = {   
       colors: ['red'], 
       is3D: true,
@@ -145,13 +130,21 @@ export class ChartsComponent implements OnInit {
       this.height = 500; 
       }
   
-  constructor(private jsonservice:chartsservice) {
+  constructor(private cs:CoronaService , http:HttpClient) {
 }
   ngOnInit():void {
-    this.jsonfile1=this.jsonservice.getItems();
- this.fun();  
+    this.cs.getState()
+    .subscribe(data=>this.jsonfile1=data);
+    console.log(this.jsonfile1);
+    
 }
+
+
+
 }
+
+
+
 
 
 

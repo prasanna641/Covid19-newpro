@@ -8,20 +8,15 @@ import { Subscription, BehaviorSubject, interval } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
-
 export class AppComponent implements OnInit {
-  title = 'covoid19';
+  title="Covid-19";
+  BannerData="hello";
   BannerDataList: any;
-  BannerData = "Be a true Indian. Show compassion. Be considerate. Help those in need. We will get through this!"
   storebannerSubject: BehaviorSubject<any> = new BehaviorSubject("");
-
   count
   subscription: Subscription;
   intervalId: number;
   constructor(private cs: CoronaService) { }
-
-  
   ngOnInit(): void {
     this.cs.getBanners().subscribe(data => {
       this.BannerDataList = data.factoids.map(item => {
@@ -29,7 +24,6 @@ export class AppComponent implements OnInit {
       })
       this.count = this.BannerDataList.length - 1
       this.BannerData = this.BannerDataList[0]
-
       const source = interval(5000);
       let i = 0;
       this.subscription = source.subscribe((val: any) => {
