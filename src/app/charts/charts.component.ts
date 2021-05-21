@@ -32,9 +32,9 @@ export class ChartsComponent implements OnInit {
   type2:string;
   data2:any;
   options2:any;
-  selectedDay: string = 'Total_India';
-  start:string="2021-02-18";
-  end:string="2021-02-22";
+  selectedDay: string = "Total_India";
+  start:string="2020-03-15";
+  end:string="2020-03-21";
   date:Date;
   date1:Date;
   get startdate():string{
@@ -68,7 +68,11 @@ export class ChartsComponent implements OnInit {
     this.file=[];
     this.fun();
   }
- 
+  fundate()
+  {
+    this.file=[];
+    this.fun();
+  }
   fun()
 
  {
@@ -79,13 +83,14 @@ export class ChartsComponent implements OnInit {
   for(let index=0;index<this.jsonfile1.length;index++)
 
 {
-  if(this.jsonfile1[index].States==this.selectedDay)
+  let date3 : Date=new Date(this.jsonfile1[index].Date_YMD);
+  if(this.jsonfile1[index].States==this.selectedDay &&(date.getTime()<date3.getTime()) &&(date3.getTime()<date1.getTime()))
   {
   
   this.a=this.jsonfile1[index].Date_YMD;
-  this.b=this.jsonfile1[index].Confirmed;
-  this.c=this.jsonfile1[index].Recovered;
-  this.d=this.jsonfile1[index].ICMR_RTPCR;
+  this.b=+this.jsonfile1[index].Confirmed;
+  this.c=+this.jsonfile1[index].Recovered;
+  this.d=+this.jsonfile1[index].ICMR_RTPCR;
 
  
   this.file.push([this.a,this.b]);
